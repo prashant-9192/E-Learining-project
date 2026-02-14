@@ -1,0 +1,93 @@
+{% include 'head.html' %}
+{% load static %}
+
+
+<body>
+ <!--navbar start-->
+    {% include 'navbar.html' %}
+<!--Navbar end-->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const orders = JSON.parse(localStorage.getItem("bookOrders")) || [];
+    const orderCount = orders.length > 99 ? "99+" : orders.length;
+    document.getElementById("orderCount").textContent = orderCount;
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <section title="carocel_img">
+        <div class="container-fluid">
+            <div class="row  " style="height: 200px; ">
+                <div class="col-md-12" style="background-color: rgba(220, 116, 18, 0.5);height: 400px;">
+
+
+
+
+                    <img src="{% static 'img/carousel-1.jpg' %}" class="d-block " alt="..."
+                        style="height: 100%;width: 100%;opacity: 0.5;">
+
+                    <h1
+                        style="font-size: 70px;font-weight: bold; text-shadow: 0px 0px 5px black;margin-top: -200px; text-align: center; color: white;">
+                        Not Found</h1>
+                    <center>
+                        <b style="text-align: center;"><a href=""
+                                style="text-decoration: none; color: white; font-size: 25px; text-shadow: 0px 0px 5px black;">Home
+                                / </a><a href=""
+                                style="text-decoration: none; color: white; font-size: 25px; text-shadow: 0px 0px 5px black;">Pages
+                                /
+                            </a><a href=""
+                                style="text-decoration: none; color: white; font-size: 25px; text-shadow: 0px 0px 5px black;">
+                                404 </a></b>
+                    </center>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <div class="container">
+        <div class="row p-4 " style="margin-top: 200px;">
+            <div class="col-md-12 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#00B7C2" viewBox="0 0 24 24" width="68px" height="78px">
+                    <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+                </svg>
+                <h1 style="font-weight: bold;">404</h1>
+                <h2>Page Not Found</h2>
+                <p class="h5">We're sorry, the page you have looked for does not exist in our <br> website! Maybe go to our home page or try to use a search?</p><br><br>
+                <input type="submit" value="Go Back To Home" id="ns">
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <!--Footer start-->
+
+{% include 'footer.html' %}
+
+<!--Footer End--><br><br>
+
+</body>
+
+
+</html>

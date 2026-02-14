@@ -1,0 +1,219 @@
+{% include 'head.html' %}
+{% load static %}
+
+
+<body>
+
+<!--navbar start-->
+    {% include 'navbar.html' %}
+<!--Navbar end-->
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const orders = JSON.parse(localStorage.getItem("bookOrders")) || [];
+    const orderCount = orders.length > 99 ? "99+" : orders.length;
+    document.getElementById("orderCount").textContent = orderCount;
+  });
+</script>
+
+
+
+
+
+
+
+
+
+   <section title="carocel_img">
+        <div class="container-fluid">
+            <div class="row  " style="height: 200px; ">
+                {% if Contact_Carousel_img_data %}  
+              <div class="col-md-12" style="background-color: rgba(220, 116, 18, 0.5);height: 400px;">
+                    <img src="{{Contact_Carousel_img_data.image.url}}" class="d-block " alt="..."
+                        style="height: 100%;width: 100%;opacity: 0.5;">
+
+                    <h1
+                        style="font-size: 70px;font-weight: bold; text-shadow: 0px 0px 5px black;margin-top: -200px; text-align: center; color: white;">
+                        Contact</h1>
+                    <center>
+                        <b style="text-align: center;"><a href=""
+                                style="text-decoration: none; color: white; font-size: 25px; text-shadow: 0px 0px 5px black;">Home
+                                / </a><a href=""
+                                style="text-decoration: none; color: white; font-size: 25px; text-shadow: 0px 0px 5px black;">Pages
+                                /
+                            </a><a href=""
+                                style="text-decoration: none; color: white; font-size: 25px; text-shadow: 0px 0px 5px black;">
+                                Contact </a></b>
+                    </center>
+                </div>
+                  {% endif %}
+            </div>
+
+    </section>
+
+
+
+
+
+
+  <!-- Contact Heading Section -->
+<section title="Categories">
+  <div class="container-fluid" style="margin-top: 100px;">
+    <div class="row">
+      <div class="col-md-12 text-center" style="margin-top: 200px;">
+        <div style="height: 2px; width: 60px; background-color: lightseagreen; margin: 0 auto;"></div>
+        <div style="height: 2px; width: 100px; background-color: lightseagreen; margin: 10px auto;"></div>
+        <h3 style="color: lightseagreen;">Contact</h3>
+        <div style="height: 2px; width: 60px; background-color: lightseagreen; margin: 10px auto;"></div>
+        <div style="height: 2px; width: 100px; background-color: lightseagreen; margin: 10px auto;"></div>
+        <h1>Contact For Any Query</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Contact Section -->
+<section title="form">
+{% if contact_data %}
+  <div class="container-fluid">
+    <div class="row p-5">
+
+      <!-- Contact Info -->
+      <div class="col-md-4 p-3">
+        <h3>Get In Touch</h3>
+        <p class="h5">{{contact_data.contact_info}}<i style="color: lightseagreen;">Download Now.</i></p>
+
+        <p>
+          <i class="fa fa-map-marker" id="ram" style="padding: 14px 19px; background-color: lightseagreen;"></i>
+          <span style="color: lightseagreen; position: relative; top: -15px;">Mobile</span><br>
+          <span style="margin-left: 50px; position: relative; top: -28px;">123 Street, New York, USA</span>
+        </p>
+
+        <p>
+          <i class="fa fa-phone" id="ram" style="padding: 14px 19px; background-color: lightseagreen;"></i>
+          <span style="color: lightseagreen; position: relative; top: -15px;">Phone</span><br>
+          <span style="margin-left: 60px; position: relative; top: -28px;">+012 345 67890</span>
+        </p>
+
+        <p>
+          <i class="fa fa-envelope" id="ram" style="padding: 14px 19px; background-color: lightseagreen;"></i>
+          <span style="color: lightseagreen; position: relative; top: -15px;">Email</span><br>
+          <span style="margin-left: 60px; position: relative; top: -28px;">info@example.com</span>
+        </p>
+      </div>
+
+      <!-- Google Map -->
+      <div class="col-md-4 p-3">
+        <iframe
+          src="{{contact_data.contact_map}}"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <!-- Login Form -->
+      <div class="col-md-4">
+        <form method="POST">
+          {% csrf_token %}
+          <fieldset class="border p-4 rounded">
+            <legend style="text-align: center; font-size: 20px; font-weight: bold;">Login Form</legend>
+
+            <label>Enter Username:</label>
+            <input type="text" id="t1" name="username" class="form-control"><br>
+
+            <label>Enter Password:</label>
+            <input type="password" id="t2" name="password" class="form-control"><br>
+
+            <label>Enter Confirm Password:</label>
+            <input type="password" id="t3" name="confirm_password" class="form-control"><br>
+
+            <label>Enter Age:</label>
+            <input type="text" id="t4" name="age" class="form-control"><br>
+
+            <label>Enter Contact No:</label>
+            <input type="number" id="t5" name="contact" class="form-control"><br><br>
+
+            <input type="button" value="Submit" onclick="validation()" class="form-control btn btn-success" id="pramabtn">
+            <br><br>
+            <span id="s1" style="color: red;"></span>
+          </fieldset>
+        </form>
+      </div>
+
+    </div>
+  </div>
+ {% endif %}
+</section>
+
+<!-- JS Validation Script 
+<script>
+  function validation() {
+    let username = document.getElementById("t1").value.trim();
+    let pwd = document.getElementById("t2").value;
+    let cpwd = document.getElementById("t3").value;
+    let age = document.getElementById("t4").value;
+    let contact = document.getElementById("t5").value;
+    let r = "";
+
+  if (username.length === 0) {
+      r += "Username should not be empty<br>";
+    } else if (username.length < 3 || username.length > 7) {
+      r += "Username must be between 3 to 7 characters<br>";
+    }
+
+    if (pwd.length === 0) {
+      r += "Password should not be empty<br>";
+    } else if (pwd.length < 4 || pwd.length > 6) {
+      r += "Password must be 4 to 6 characters<br>";
+    }
+
+    if (cpwd.length === 0) {
+      r += "Confirm Password should not be empty<br>";
+    } else if (pwd !== cpwd) {
+      r += "Passwords do not match<br>";
+    }
+
+    if (age.length === 0) {
+      r += "Age should not be empty<br>";
+    } else if (parseInt(age) < 18 || parseInt(age) > 25) {
+      r += "Age must be between 18 and 25<br>";
+    }
+
+    if (contact.length === 0) {
+      r += "Contact should not be empty<br>";
+    } else if (contact.length !== 10) {
+      r += "Contact must be exactly 10 digits<br>";
+    }
+
+    document.getElementById("s1").innerHTML = r;
+
+    if (r.length === 0) {
+      alert("Form submitted successfully...!!!");
+    }
+  }
+</script>-->
+
+
+
+
+
+
+  </section>
+
+
+
+
+
+
+
+
+
+ <!--Footer start-->
+
+{% include 'footer.html' %}
+
+<!--Footer End-->
+
+</body>
+
+
+</html>

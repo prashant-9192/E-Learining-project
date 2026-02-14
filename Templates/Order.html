@@ -1,0 +1,198 @@
+{% include 'head.html' %}
+{% load static %}
+
+
+<body>
+ <!--navbar start-->
+    {% include 'navbar.html' %}
+<!--Navbar end-->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const orders = JSON.parse(localStorage.getItem("bookOrders")) || [];
+    const orderCount = orders.length > 99 ? "99+" : orders.length;
+    document.getElementById("orderCount").textContent = orderCount;
+  });
+</script>
+
+
+
+
+<section title="carousel_img">
+  <div class="container-fluid p-0">
+    <div class="row">
+      
+      <div class="col-12 position-relative" style="height: 400px;">
+        {% if Order_Carousel_img_data %}
+        <img src="{{Order_Carousel_img_data.image.url}}" class="w-100 h-100" alt="..."
+          style="object-fit: cover; opacity: 0.5;">
+        {% endif %}
+        <!-- Text on image -->
+        <div class="position-absolute top-50 start-50 translate-middle text-center px-2">
+          <h1 style="font-size: 48px; font-weight: bold; text-shadow: 0px 0px 5px black; color: white;">
+            Order Now Books
+          </h1>
+
+          <div style="font-size: 3vw; color: white; text-shadow: 0px 0px 5px black;">
+            <a href="#" style="text-decoration: none; color: white;">Home / </a>
+            <a href="#" style="text-decoration: none; color: white;">Pages / </a>
+            <a href="#" style="text-decoration: none; color: white;">Order Now Books</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+ <div class="container" style="margin-top: 200px;">
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <form onsubmit="return saveBookOrder();" id="bookOrderForm "
+        style="background-color: #cf961b; padding: 30px; border-radius: 15px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);" method="POST">
+      {% csrf_token %}
+        <h2 class="text-center mb-4 " style="color: #c20d91; font-weight: bold;">Book Order Now</h2>
+
+        <input type="text" id="name" class="form-control mb-3" name="name" placeholder="Enter Your Name" required>
+        <input type="email" id="email" class="form-control mb-3" name="email" placeholder="Enter Your Email" required>
+        <input type="password" id="password" class="form-control mb-3" name="password" placeholder="Create Password (min 6 chars & includes'@')" required>
+
+        <select id="bookSelect" class="form-control mb-3" name="select_book" required>
+          <option value="">-- Select Book --</option>
+          <option>Learn HTML & CSS</option>
+          <option>JavaScript Essentials</option>
+          <option>Mastering Photoshop</option>
+          <option>UI/UX Design Guide</option>
+          <option>Illustrator for Beginners</option>
+        </select>
+        
+        <input type="number" id="quantity" class="form-control mb-3" name="quantity" placeholder="Enter Quantity" required>
+
+        <input type="date" id="deliveryDate" class="form-control mb-3" name="delivery_date" required>
+          <input type="text" id="address" class="form-control mb-3" name="address" placeholder="Enter Delivery City Address"  required>
+
+       
+
+        <select id="paymentMethod" class="form-control mb-3" name="payment_method" required>
+          <option value="">-- Select Payment Method --</option>
+          <option>UPI</option>
+          <option>Cash On Delivery</option>
+          <option>Credit/Debit Card</option>
+        </select>
+
+        <div class="text-center">
+          <button type="submit" class=" px-4" id="pbtn">Order Now</button>
+        </div>
+
+        <p class="text-center mt-3" id="formMessage" style="font-weight: bold;"></p>
+      </form>
+    
+
+<script>
+  function saveBookOrder() {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const book = document.getElementById("bookSelect").value;
+    const quantity = parseInt(document.getElementById("quantity").value);
+    const date = document.getElementById("deliveryDate").value;
+    const address = document.getElementById("address").value.trim();
+    const payment = document.getElementById("paymentMethod").value;
+    const msg = document.getElementById("formMessage");
+
+    const today = new Date().toISOString().split("T")[0];
+
+    if (name.length < 3 || !/^[A-Za-z ]+$/.test(name)) {
+      msg.style.color = "red";
+      msg.textContent = "Please enter a valid name (min 3 letters).";
+      return false;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      msg.style.color = "red";
+      msg.textContent = "Please enter a valid email address.";
+      return false;
+    }
+
+    if (password.length < 6 || !password.includes("@")) {
+      msg.style.color = "red";
+      msg.textContent = "Password must be at least 6 characters and contain '@' symbol.";
+      return false;
+    }
+
+    if (book === "") {
+      msg.style.color = "red";
+      msg.textContent = "Please select a book.";
+      return false;
+    }
+
+    if (isNaN(quantity) || quantity < 1) {
+      msg.style.color = "red";
+      msg.textContent = "Please enter a valid quantity.";
+      return false;
+    }
+
+    if (!date) {
+      msg.style.color = "red";
+      msg.textContent = "Please select a delivery date.";
+      return false;
+    }
+
+    if (date < today) {
+      msg.style.color = "red";
+      msg.textContent = "Delivery date cannot be in the past.";
+      return false;
+    }
+
+    if (address.length < 3) {
+      msg.style.color = "red";
+      msg.textContent = "Please enter a valid delivery address.";
+      return false;
+    }
+
+    if (payment === "") {
+      msg.style.color = "red";
+      msg.textContent = "Please select a payment method.";
+      return false;
+    }
+
+    const data = { name, email, password, book, quantity, date, address, payment };
+    let orders = JSON.parse(localStorage.getItem("bookOrders")) || [];
+    orders.push(data);
+    localStorage.setItem("bookOrders", JSON.stringify(orders));
+
+    msg.style.color = "green";
+    msg.textContent = "Book order saved successfully!";
+
+    document.getElementById("bookOrderForm").reset();
+
+    setTimeout(() => {
+      alert("🎉 Your order was placed successfully!");
+      window.location.href = "show-order.html";
+    }, 1000);
+
+    return false;
+  }
+</script>
+
+
+</div>
+  </div>
+</div><br><br><br>
+
+
+
+<!--Footer start-->
+
+{% include 'footer.html' %}
+
+<!--Footer End-->
+
+
+
+
+</body>
+
+
+</html>

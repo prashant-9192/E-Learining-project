@@ -1,0 +1,66 @@
+{% include 'head.html' %}
+{% load static %}
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid" id="z">
+      <a class="navbar-brand" href="#"> <i class="fa fa-book me-5 h1" style="color: lightseagreen;font-size: 70px; margin-left: 10px;"></i>
+        <a class="navbar-brand " href="#" id="hw"
+          style="font-size: 40px;color: lightseagreen; font-weight: bold;margin-top: -15px;">eLEARNING</a></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll text-white" style="font-size: 20px;">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'index' %}" id="hw">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}" id="hw">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'courses' %}" id="hw">Courses</a>
+          </li>
+          <div class="dropdown">
+            <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="hw"
+              style="margin-left: 30px; margin-top: 5px; font-size: 20px;font-weight: bold; ">
+              Pages
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'our_team' %}"  id="drop">Our Team</a></li>
+              <li><a class="dropdown-item" href="{% url 'testimonial' %}"  id="drop">Testimonial</a></li>
+              <!--<li><a class="dropdown-item" href="{% url 'page' %}"  id="drop">404 Page</a></li>-->
+            </ul>
+          </div>
+         <li class="nav-item">
+  <a class="nav-link" href="{% url 'contact' %}" id="hw">Contact</a>
+</li>
+
+
+<li class="nav-item ms-2"> <!-- 👈 instead of ms-3 or ms-4 -->
+  <a class="nav-link" href="{% url 'Order' %}" id="hw">
+    <button type="button" class="btn btn-warning"  id="sakshu1">Order Now</button>
+     </a>
+</li>
+
+
+
+      <!-- Show Order with Badge -->
+      <a class="nav-link" href="{% url 'show-order' %}" id="hw" style="position: relative; font-size: 18px;">
+        <button type="button" class="btn position-relative btn-warning" id="sakshu1">
+          Orders
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white fw-bold"
+            id="orderCount" style="font-weight: bold;">
+            0
+            <span class="visually-hidden">total orders</span>
+          </span>
+        </button>
+      </a>
+
+          
+          
+
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,676 @@
+{% include 'head.html' %}
+{% load static %}
+
+
+<body>
+ <!--navbar start-->
+    {% include 'navbar.html' %}
+<!--Navbar end-->
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const orders = JSON.parse(localStorage.getItem("bookOrders")) || [];
+    const orderCount = orders.length > 99 ? "99+" : orders.length;
+    document.getElementById("orderCount").textContent = orderCount;
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+    <section title="carocel_img">
+        <div class="container-fluid">
+            <div class="row  " style="height: 200px; ">
+              {% if Courses_Carousel_img_data %}
+                <div class="col-md-12" style="background-color: rgba(220, 116, 18, 0.5);height: 400px;">
+                    <img src="{{Courses_Carousel_img_data.image.url}}" class="d-block " alt="..."
+                        style="height: 100%;width: 100%;opacity: 0.5;">
+
+                    <h1 style="font-size: 70px;font-weight: bold; text-shadow: 0px 0px 5px black;margin-top: -200px; text-align: center; color: white;">
+                        Courses</h1>
+                    <center>
+                        <b style="text-align: center;"><a href=""
+                                style="text-decoration: none; color: white; font-size: 25px; text-shadow: 0px 0px 5px black;">Home
+                                / </a><a href=""
+                                style="text-decoration: none; color: white; font-size: 25px; text-shadow: 0px 0px 5px black;">Pages
+                                /
+                            </a><a href=""
+                                style="text-decoration: none; color: white; font-size: 25px; text-shadow: 0px 0px 5px black;">
+                                Courses </a></b>
+                    </center>
+                     </div>
+                {% endif %}
+            </div>
+
+    </section>
+
+
+
+
+
+ 
+
+
+  
+
+  <section title="Categories">
+    <div class="container-fluid">
+      <div class="row " style="margin-top: 200px;">
+        <div class="col-md-12 text-center">
+          <br><br><br><br>
+          <div style="height: 2px; width: 60px; background-color: lightseagreen; margin: 0 auto;"></div>
+          <div style="height: 2px; width: 100px; background-color: lightseagreen; margin: 10px auto;"></div>
+          <h3 style="color: lightseagreen;">Categories</h3>
+          <div style="height: 2px; width: 60px; background-color: lightseagreen; margin: 10px auto;"></div>
+          <div style="height: 2px; width: 100px; background-color: lightseagreen; margin: 10px auto;"></div>
+          <h1>Courses Categories</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  
+  <section title="web">
+    <div class="container">
+      {% if courses_categories_data %}
+      <div class="row p-3" style="height: auto;">
+       
+      {% for j in courses_list_data %}
+        <div class="col-md-8 col-12 mb-3">
+          <div id="inner_box" class="p-3">
+            <img src="{{courses_categories_data.courses_categories_img1.url}}" class="img-fluid mb-2" id="prama">
+            <span class="my_span">{{courses_categories_data.courses_name1}}<br><b style="color: lightseagreen;">{{j.courses_list1}}</b></span>
+          </div>
+  
+          <div class="row p-3">
+            <div class="col-md-6 col-12 mb-3" id="inner_box">
+              <img src="{{courses_categories_data.courses_categories_img2.url}}" class="img-fluid mb-2" id="prama">
+              <span class="my_span">{{courses_categories_data.courses_name2}}<br><b style="color: lightseagreen;">{{j.courses_list2}}</b></span>
+            </div>
+            <div class="col-md-6 col-12" id="inner_box">
+              <img src="{{courses_categories_data.courses_categories_img3.url}}" class="img-fluid mb-2" id="prama">
+              <span class="my_span">{{courses_categories_data.courses_name3}} <br><b style="color: lightseagreen;">{{j.courses_list3}}</b></span>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-4 col-12" id="inner_box">
+          <img src="{{courses_categories_data.courses_categories_img4.url}}" class="img-fluid mb-2" id="prama" style="height: 90%;">
+          <span class="my_span">{{courses_categories_data.courses_name4}}<br><b style="color: lightseagreen;">{{j.courses_list4}}</b></span>
+        </div>
+        {% endfor %}
+      
+      </div>
+      
+      {% endif %}
+    </div>
+  </section>
+
+  <section title="courses">
+    <div class="container-fluid">
+      <div class="row p-3 mt-5">
+        <div class="col-12 text-center">
+
+          <!-- Decorative HR and Heading -->
+          <hr style="height: 2px; width: 60px; background-color: lightseagreen; margin: 0 auto;">
+          <hr style="height: 2px; width: 100px; background-color: lightseagreen; margin: 10px auto;">
+          <h3 style="color: lightseagreen;">Courses</h3>
+          <hr style="height: 2px; width: 60px; background-color: lightseagreen; margin: 10px auto;">
+          <hr style="height: 2px; width: 100px; background-color: lightseagreen; margin: 0 auto;">
+          <h1>Popular Courses</h1>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  
+
+  <section title="card">
+    <div class="container">
+      
+      <div class="row">
+        {% if courses_data %}
+        {% for i in courses_data %}
+        <div class="col-md-4 col-12 mt-5">
+          <div class="card">
+            <div id="inner_box" style="height: 250px;">
+              <img src="{{i.courses_image.url}}" height="100%" width="100%" alt="" id="prama"><br>
+
+              <div style="margin-top: -60px;">
+                <a href="#" class="flex-shrink-0 btn btn-sm  px-2 border-end text-white"
+                  style="border-radius: 30px 0 0 30px;position: relative; left: 44px;" id="sp1_btn">Read More</a>
+
+                <a href="#" class="flex-shrink-0 btn btn-sm px-2 text-white"
+                  style="border-radius: 0 30px 30px 0;position: relative; left: 40px;" id="sp2_btn">Join Now</a>
+
+              </div>
+            </div>
+            <div class="card-body text-center" style="background-color: lightblue;">
+              <h3 class="mb-0">${{i.courses_price}}</h3>
+              <div class="mb-3">
+                <!--<small class="fa fa-star " style="color: lightseagreen;" ></small>
+                <small class="fa fa-star " style="color: lightseagreen;"></small>
+                <small class="fa fa-star " style="color: lightseagreen;"></small>
+                <small class="fa fa-star " style="color: lightseagreen;"></small>
+                <small class="fa fa-star " style="color: lightseagreen;"></small>-->
+                {% for i in "12345" %}
+                <small class="fa fa-star" style="color: lightseagreen;"></small>
+                {% endfor %}
+                <small>{{i.courses_rating_count}}</small>
+                <p style="font-size: 20px;">{{i.courses_title}}</p>
+
+              </div>
+            </div>
+            <div class="card-footer" style="border-top: 1px solid black; background-color: lightblue;">
+              <div class="row">
+                <div class="col-md-4" style="border-right: 1px solid black;">
+                  <i class="fa fa-address-book me-2" style="color: lightseagreen;"><small
+                      style="color:black ; margin-left: 10px;">{{i.courses_instructor}}</small></i>
+                </div>
+                <div class="col-md-4" style="border-right: 1px solid black;">
+                  <i class=" fa fa-clock-o  me-2" style="color: lightseagreen;"><small
+                      style="color:black ; margin-left: 10px;">{{i.courses_duration}}</small></i>
+                </div>
+                <div class="col-md-4">
+                  <i class="fa fa-user  me-2" style="color: lightseagreen;"><small
+                      style="color:black ; margin-left: 10px;">{{i.courses_students}}</small></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--<div class="col-md-4 col-12 mt-5">
+          <div class="card">
+            <div id="inner_box" style="height: 250px;">
+              <img src="img/course-2 (1).jpg" height="100%" width="100%" alt="" id="prama"><br>
+
+              <div style="margin-top: -60px;">
+                <a href="#" class="flex-shrink-0 btn btn-sm  px-2 border-end"
+                  style="border-radius: 30px 0 0 30px;position: relative; left: 44px;" id="sp1_btn">Read More</a>
+
+                <a href="#" class="flex-shrink-0 btn btn-sm px-2"
+                  style="border-radius: 0 30px 30px 0;position: relative; left: 40px;" id="sp2_btn">Join Now</a>
+
+              </div>
+            </div>
+            <div class="card-body text-center" style="background-color: lightblue;">
+              <h3 class="mb-0">$149.00</h3>
+              <div class="mb-3">
+                <small class="fa fa-star " style="color: lightseagreen;"></small>
+                <small class="fa fa-star " style="color: lightseagreen;"></small>
+                <small class="fa fa-star " style="color: lightseagreen;"></small>
+                <small class="fa fa-star " style="color: lightseagreen;"></small>
+                <small class="fa fa-star " style="color: lightseagreen;"></small>
+                <small>(123)</small>
+                <p style="font-size: 20px;">Web Design & Development <br> Course for Beginners</p>
+
+              </div>
+            </div>
+            <div class="card-footer" style="border-top: 1px solid black; background-color: lightblue;">
+              <div class="row">
+                <div class="col-md-4" style="border-right: 1px solid black;">
+                  <i class="fa fa-address-book me-2" style="color: lightseagreen;"><small
+                      style="color:black ; margin-left: 10px;">Join Doe</small></i>
+                </div>
+                <div class="col-md-4" style="border-right: 1px solid black;">
+                  <i class=" fa fa-clock-o  me-2" style="color: lightseagreen;"><small
+                      style="color:black ; margin-left: 10px;">1.49 Hrs</small></i>
+                </div>
+                <div class="col-md-4">
+                  <i class="fa fa-user  me-2" style="color: lightseagreen;"><small
+                      style="color:black ; margin-left: 10px;">30 students</small></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-12 mt-5">
+          <div class="card">
+            <div id="inner_box" style="height: 250px;">
+              <img src="img/course-3.jpg" height="100%" width="100%" alt="" id="prama"><br>
+
+              <div style="margin-top: -60px;">
+                <a href="#" class="flex-shrink-0 btn btn-sm  px-2 border-end"
+                  style="border-radius: 30px 0 0 30px;position: relative; left: 44px;" id="sp1_btn">Read More</a>
+
+                <a href="#" class="flex-shrink-0 btn btn-sm px-2"
+                  style="border-radius: 0 30px 30px 0;position: relative; left: 40px;" id="sp2_btn">Join Now</a>
+
+              </div>
+            </div>
+            <div class="card-body text-center" style="background-color: lightblue;">
+              <h3 class="mb-0">$149.00</h3>
+              <div class="mb-3">
+                <small class="fa fa-star " style="color: lightseagreen;"></small>
+                <small class="fa fa-star " style="color: lightseagreen;"></small>
+                <small class="fa fa-star " style="color: lightseagreen;"></small>
+                <small class="fa fa-star " style="color: lightseagreen;"></small>
+                <small class="fa fa-star " style="color: lightseagreen;"></small>
+                <small>(123)</small>
+                <p style="font-size: 20px;">Web Design & Development <br> Course for Beginners</p>
+
+              </div>
+            </div>
+            <div class="card-footer" style="border-top: 1px solid black; background-color: lightblue;">
+              <div class="row">
+                <div class="col-md-4" style="border-right: 1px solid black;">
+                  <i class="fa fa-address-book me-2" style="color: lightseagreen;"><small
+                      style="color:black ; margin-left: 10px;">Join Doe</small></i>
+                </div>
+                <div class="col-md-4" style="border-right: 1px solid black;">
+                  <i class=" fa fa-clock-o  me-2" style="color: lightseagreen;"><small
+                      style="color:black ; margin-left: 10px;">1.49 Hrs</small></i>
+                </div>
+                <div class="col-md-4">
+                  <i class="fa fa-user  me-2" style="color: lightseagreen;"><small
+                      style="color:black ; margin-left: 10px;">30 students</small></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>-->
+        {% endfor %}
+      {% endif %}
+      </div>
+      
+    </div><br><br><br>
+  </section>
+
+
+   <section title="testimonial">
+    <div class="container-fluid">
+      <div class="row p-3 mt-5">
+        <div class="col-12 text-center">
+
+          <!-- Decorative HR and Heading -->
+          <hr style="height: 2px; width: 60px; background-color: lightseagreen; margin: 0 auto;">
+          <hr style="height: 2px; width: 100px; background-color: lightseagreen; margin: 10px auto;">
+          <h3 style="color: lightseagreen;">TESTIMONIAL</h3>
+          <hr style="height: 2px; width: 60px; background-color: lightseagreen; margin: 10px auto;">
+          <hr style="height: 2px; width: 100px; background-color: lightseagreen; margin: 0 auto;">
+          <h1>Our Students Say!</h1>
+
+        </div>
+      </div>
+    </div><br><br>
+  </section>
+
+
+
+  <section title="carocel">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div id="carouselExampleDark" class="carousel carousel-dark slide ">
+            <div class="carousel-indicators" style="bottom: -50px;">
+              {% for i in testimonial_data %}
+              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{ forloop.counter0 }}"
+                    class="{% if forloop.first %}active{% endif %}"></button>
+                {% endfor %}
+              <!--<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3"
+                aria-label="Slide 4"></button>-->
+            </div>
+            
+            <div class="carousel-inner">
+              
+              {% for i in testimonial_data %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="10000">
+                <div class="row">
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{{i.image1.url}}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">{{i.client_name1}}</h6>
+                        <i class="h5">{{i.profession1}}</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2" style="background-color: lightblue;">
+                        <p>{{i.message1}}</p>
+                      </div>
+                    </div>
+                 </div>
+                
+                  <div class="col-md-4 mt-3">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{{i.image2.url}}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">{{i.client_name2}}</h6>
+                        <i class="h5">{{i.profession2}}</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center text-white p-2" style="background-color: lightseagreen;">
+                        <p>{{i.message2}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{{i.image3.url}}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">{{i.client_name3}}</h6>
+                        <i class="h5">{{i.profession3}}</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2" style="background-color: lightblue;">
+                        <p>{{i.message3}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+             
+
+             <!-- <div class="carousel-item">
+                <div class="row">
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-2.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2 " style="background-color: lightblue;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 mt-3">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-1.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center text-white p-2" style="background-color: lightseagreen;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-3.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2" style="background-color: lightblue;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-2.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2 " style="background-color: lightblue;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 mt-3">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-3.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center text-white p-2" style="background-color: lightseagreen;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-4.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2" style="background-color: lightblue;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-3.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2 " style="background-color: lightblue;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 mt-3">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-4.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center text-white p-2" style="background-color: lightseagreen;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-1.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2" style="background-color: lightblue;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>-->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div><br><br><br><br>
+  </section>
+
+
+
+  <!--Footer start-->
+
+{% include 'footer.html' %}
+
+<!--Footer End-->
+
+
+  
+</section>
+
+
+
+
+ 
+
+
+  
+  </body>
+
+
+</html>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              
+
+                
+                
+              
+
+
+
+
+             
+
+
+
+
+                 
+
+
+
+
+
+
+                 
+               
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

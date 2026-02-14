@@ -1,0 +1,314 @@
+{% include 'head.html' %}
+{% load static %}
+
+
+<body>
+
+<!--navbar start-->
+    {% include 'navbar.html' %}
+<!--Navbar end-->
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const orders = JSON.parse(localStorage.getItem("bookOrders")) || [];
+    const orderCount = orders.length > 99 ? "99+" : orders.length;
+    document.getElementById("orderCount").textContent = orderCount;
+  });
+</script>
+
+
+
+
+   <section title="carocel_img">
+        <div class="container-fluid">
+            <div class="row  " style="height: 200px; ">
+              {% if About_Carousel_img_data %}  
+                <div class="col-md-12" style="background-color: rgba(220, 116, 18, 0.5);height: 400px;">
+                  
+                  <img src="{{About_Carousel_img_data.image.url}}" class="d-block " alt="..."
+                        style="height: 100%;width: 100%;opacity: 0.5;">
+
+                    
+                      <h1 style="font-size: 70px;font-weight: bold; text-shadow: 0px 0px 5px black;margin-top: -200px; text-align: center; color: white;">
+                        About Us</h1>
+                      <center>
+                        <b style="text-align: center;"><a href=""
+                                style="text-decoration: none; color: white; font-size: 25px; text-shadow: 0px 0px 5px black;">Home
+                                / </a><a href=""
+                                style="text-decoration: none; color: white; font-size: 25px; text-shadow: 0px 0px 5px black;">Pages
+                                /
+                            </a><a href=""
+                                style="text-decoration: none; color: white; font-size: 25px; text-shadow: 0px 0px 5px black;">
+                                about us </a></b>
+                      </center>
+                     </div>
+                     {% endif %}
+            </div>
+          </div>
+
+    </section>
+
+
+
+
+
+
+ 
+
+<section title="card" class="py-5" style="margin-top: 200px;">
+  <div class="container">
+    <div class="row g-4">
+      
+      <!-- Card 1 -->
+       {% for i in About_card_data %}
+      <div class="col-lg-3 col-md-6 col-12 mt-5">
+        <div class="card h-100 text-center p-3 shadow-sm" id="sakshu">
+          <i class="fa fa-4x {{ i.card_icon }} mb-3 " id="nadim"></i><!--fa-graduation-cap-->
+          <h5>{{ i.card_title }}</h5><!--Skilled Instructors-->
+          <p>{{ i.card_info }}</p>
+        </div>
+      </div>
+      {% endfor %}
+
+      <!-- Card 2 -->
+      <!--<div class="col-lg-3 col-md-6 col-12 mt-5">
+        <div class="card h-100 text-center p-3 shadow-sm" id="sakshu">
+          <i class="fa fa-4x fa-globe mb-3" id="nadim"></i>
+          <h5>Online Classes</h5>
+          <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+        </div>
+      </div>-->
+
+      <!-- Card 3 -->
+      <!--<div class="col-lg-3 col-md-6 col-12 mt-5">
+        <div class="card h-100 text-center p-3 shadow-sm"  id="sakshu">
+          <i class="fa fa-4x fa-home mb-3 " id="nadim"></i>
+          <h5>Home Projects</h5>
+          <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+        </div>
+      </div>-->
+
+      <!-- Card 4 -->
+      <!--<div class="col-lg-3 col-md-6 col-12 mt-5">
+        <div class="card h-100 text-center p-3 shadow-sm"  id="sakshu">
+          <i class="fa fa-4x fa-book mb-3 " id="nadim"></i>
+          <h5>Book Library</h5>
+          <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+        </div>
+      </div>-->
+
+    </div>
+  </div>
+</section>
+
+ <section title="about_us" class="py-5">
+  <div class="container">
+    {% if about_data %}
+    
+    <div class="row align-items-center">
+      <!-- Image Section -->
+       
+      <div class="col-md-6 col-12 mb-4 mb-md-0 text-center">
+        <img src="{{about_data.about_img.url}}" class="img-fluid w-75" alt="About Image">
+      </div>
+
+      <!-- Text Content Section -->
+      <div class="col-md-6 col-12">
+        <div class="text-center text-md-start mb-3">
+          <hr style="height: 2px; width: 60px; background-color: blue; display: inline-block; margin-bottom: 8px;">
+          <h4 style="color: lightseagreen; display: inline;">About Us</h4>
+          <hr style="height: 2px; width: 100px; background-color: blue; display: inline-block; margin-left: 10px;margin-bottom: 8px;">
+        </div>
+        <h2 class="fw-bold">{{about_data.about_title}}</h2>
+        <p>{{about_data.about_info1}}</p>
+        <p>{{about_data.about_info2}}</p>
+
+        <!-- Features List -->
+        <div class="row">
+          {% for i in about_features_data %}
+          <div class="col-12 col-md-6">
+            <i class="fa fa-arrow-right me-2 text-success">{{i.About_features}}</i>
+           
+          </div>
+          {% endfor %}
+          <!--<div class="col-12 col-md-6">
+            <i class="fa fa-arrow-right me-2 text-success"></i>Online Classes</p>
+            <p><i class="fa fa-arrow-right me-2 text-success"></i>Skilled Instructors</p>
+            <p><i class="fa fa-arrow-right me-2 text-success"></i>International Certificate</p>
+          </div>-->
+        </div>
+
+        <!-- Read More Button -->
+        <div class="mt-3 text-center text-md-start">
+          <a href="#"><button id="rbtn">Read More</button></a>
+        </div>
+      </div>
+    </div>
+    
+    {% endif %}
+  </div>
+</section>
+
+
+          
+
+
+ <section title="instructure">
+    <div class="container-fluid">
+      <div class="row p-3 mt-5">
+        <div class="col-12 text-center">
+
+          <!-- Decorative HR and Heading -->
+          <hr style="height: 2px; width: 60px; background-color: lightseagreen; margin: 0 auto;">
+          <hr style="height: 2px; width: 100px; background-color: lightseagreen; margin: 10px auto;">
+          <h3 style="color: lightseagreen;">INSTRUCTURES</h3>
+          <hr style="height: 2px; width: 60px; background-color: lightseagreen; margin: 10px auto;">
+          <hr style="height: 2px; width: 100px; background-color: lightseagreen; margin: 0 auto;">
+          <h1>Expert Instructors</h1>
+
+        </div>
+      </div>
+    </div><br><br>
+  </section>
+
+
+
+ <section title="card" class="py-5">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Single Card -->
+       {% if our_team_data %}
+        {% for i in our_team_data %}
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="card team-card text-center">
+          <div class="team-img position-relative">
+            <img src="{{i.our_team_img.url}}" class="img-fluid w-100 img-fluid" alt="Instructor">
+            <div class="social-icons">
+              <a href="{{i.our_team_f_link}}" ><i class="fa fa-facebook" ></i></a>
+              <a href="{{i.our_team_t_link}}"><i class="fa fa-twitter"></i></a>
+              <a href="{{i.our_team_i_link}}"><i class="fa fa-instagram"></i></a>
+            </div>
+          </div>
+          <div class="card-body bg-warning-subtle">
+            <h5>{{i.our_team_name}}</h5>
+            <p class="text-muted">{{i.our_team_destination}}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!--Footer start-->
+
+{% include 'footer.html' %}
+
+<!--Footer End-->
+ 
+
+         </body>
+
+
+</html>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              
+
+                
+                
+              
+
+
+
+
+             
+
+
+
+
+                 
+
+
+
+
+
+
+                 
+               
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,334 @@
+{% include 'head.html' %}
+{% load static %}
+
+<body>
+
+    <!--navbar start-->
+    {% include 'navbar.html' %}
+<!--Navbar end-->
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const orders = JSON.parse(localStorage.getItem("bookOrders")) || [];
+    const orderCount = orders.length > 99 ? "99+" : orders.length;
+    document.getElementById("orderCount").textContent = orderCount;
+  });
+</script>
+
+
+
+
+
+
+
+
+
+    <section title="carocel_img">
+        <div class="container-fluid">
+            <div class="row  " style="height: 200px; ">
+              {% if Testimonial_Carousel_img_data %}  
+                <div class="col-md-12" style="background-color: rgba(220, 116, 18, 0.5);height: 400px;">
+                    <img src="{{Testimonial_Carousel_img_data.image.url}}" class="d-block " alt="..."
+                        style="height: 100%;width: 100%;opacity: 0.5;">
+
+                    <h1
+                        style="font-size: 70px;font-weight: bold; text-shadow: 0px 0px 5px black;margin-top: -200px; text-align: center; color: white;">
+                        Testimonial</h1>
+                    <center>
+                        <b style="text-align: center;"><a href=""
+                                style="text-decoration: none; color: white; font-size: 25px; text-shadow: 0px 0px 5px black;">Home
+                                / </a><a href=""
+                                style="text-decoration: none; color: white; font-size: 25px; text-shadow: 0px 0px 5px black;">Pages
+                                /
+                            </a><a href=""
+                                style="text-decoration: none; color: white; font-size: 25px; text-shadow: 0px 0px 5px black;">
+                                Testimonial </a></b>
+                    </center>
+                     </div>
+                     {% endif %}
+            </div>
+
+    </section>
+
+
+
+     <section title="testimonial">
+    <div class="container-fluid" style="margin-top: 250px;">
+      <div class="row p-3 mt-5">
+        <div class="col-12 text-center">
+
+          <!-- Decorative HR and Heading -->
+          <hr style="height: 2px; width: 60px; background-color: lightseagreen; margin: 0 auto;">
+          <hr style="height: 2px; width: 100px; background-color: lightseagreen; margin: 10px auto;">
+          <h3 style="color: lightseagreen;">TESTIMONIAL</h3>
+          <hr style="height: 2px; width: 60px; background-color: lightseagreen; margin: 10px auto;">
+          <hr style="height: 2px; width: 100px; background-color: lightseagreen; margin: 0 auto;">
+          <h1>Our Students Say!</h1>
+
+        </div>
+      </div>
+    </div><br><br>
+  </section>
+
+       
+
+
+
+
+
+ <section title="carocel">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div id="carouselExampleDark" class="carousel carousel-dark slide ">
+            <div class="carousel-indicators" style="bottom: -50px;">
+              {% for i in testimonial_data %}
+              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{ forloop.counter0 }}"
+                    class="{% if forloop.first %}active{% endif %}"></button>
+                {% endfor %}
+              <!--<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3"
+                aria-label="Slide 4"></button>-->
+            </div>
+            
+            <div class="carousel-inner">
+              
+              {% for i in testimonial_data %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="10000">
+                <div class="row">
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{{i.image1.url}}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">{{i.client_name1}}</h6>
+                        <i class="h5">{{i.profession1}}</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2" style="background-color: lightblue;">
+                        <p>{{i.message1}}</p>
+                      </div>
+                    </div>
+                 </div>
+                
+                  <div class="col-md-4 mt-3">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{{i.image2.url}}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">{{i.client_name2}}</h6>
+                        <i class="h5">{{i.profession2}}</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center text-white p-2" style="background-color: lightseagreen;">
+                        <p>{{i.message2}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{{i.image3.url}}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">{{i.client_name3}}</h6>
+                        <i class="h5">{{i.profession3}}</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2" style="background-color: lightblue;">
+                        <p>{{i.message3}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+             
+
+             <!-- <div class="carousel-item">
+                <div class="row">
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-2.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2 " style="background-color: lightblue;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 mt-3">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-1.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center text-white p-2" style="background-color: lightseagreen;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-3.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2" style="background-color: lightblue;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-2.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2 " style="background-color: lightblue;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 mt-3">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-3.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center text-white p-2" style="background-color: lightseagreen;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-4.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2" style="background-color: lightblue;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-3.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2 " style="background-color: lightblue;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 mt-3">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-4.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center text-white p-2" style="background-color: lightseagreen;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mt-3 d-md-block d-none">
+                    <div class="">
+                      <div class="card-header p-2"
+                        style="height: 120px;width: 120px; margin: auto; border-radius: 50%; border: 1px solid black;">
+                        <img src="{% static 'img/testimonial-1.jpg' %}" alt=""
+                          style="height: 100%; width: 100%; border-radius: 50%;"><br><br>
+                        <h6 style="font-weight: bold;">Client Name</h6>
+                        <i class="h5">Proffesion</i>
+                      </div><br><br><br>
+                      <div class="card-footer text-center p-2" style="background-color: lightblue;">
+                        <p>Tempor erat elitr rebum at clita. <br> Diam dolor diam ipsum sit diam <br>amet diam et eos.
+                          Clita erat ipsum <br>et lorem et sit.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>-->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div><br><br><br><br>
+  </section>
+
+
+
+
+ <!--Footer start-->
+
+{% include 'footer.html' %}
+
+<!--Footer End--> 
+
+</body>
+
+
+</html>
